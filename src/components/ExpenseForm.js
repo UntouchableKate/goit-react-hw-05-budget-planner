@@ -61,7 +61,7 @@ class ExpenseForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSave: (name, amount) => dispatch(expensesAction.add(name, amount)),
+    onSave: (name, amount) => dispatch(expensesAction.addExpense(name, amount)),
   };
 };
 

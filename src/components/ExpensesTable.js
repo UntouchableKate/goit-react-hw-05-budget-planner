@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 //redux
 import * as expensesAction from '../redux/expensesForm/expensesAction';
-import expensesSelectors from '../redux/expensesForm/expensesSelectors';
+import rootSelectors from '../redux/rootSelectors';
 
 import styled from 'styled-components';
 import Button from './shared/Button';
@@ -26,36 +26,40 @@ const Table = styled.table`
 
 const ExpensesTable = ({ expenses = [], onRemove }) => (
   <Table>
-    <thead>
-      <tr>
-        <th>Expense name</th>
-        <th>Expense amount</th>
-        <th />
-      </tr>
-    </thead>
-    <tbody>
-      {expenses.map(({ id, name, amount }) => (
-        <tr key={id}>
-          <td>{name}</td>
-          <td>{amount}</td>
-          <td>
-            <Button label="Delete" onClick={() => onRemove(id)} />
-          </td>
-        </tr>
-      ))}
-    </tbody>
+    {expenses.length > 0 && (
+      <>
+        <thead>
+          <tr>
+            <th>Expense name</th>
+            <th>Expense amount</th>
+            <th />
+          </tr>
+        </thead>
+        <tbody>
+          {expenses.map(({ id, name, amount }) => (
+            <tr key={id}>
+              <td>{name}</td>
+              <td>{amount}</td>
+              <td>
+                <Button label="Delete" onClick={() => onRemove(id)} />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </>
+    )}
   </Table>
 );
 
 const mapStateToProps = state => {
   return {
-    expenses: expensesSelectors.getExpenses(state),
+    expenses: rootSelectors.getExpenses(state),
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onRemove: id => dispatch(expensesAction.remove(id)),
+    onRemove: id => dispatch(expensesAction.removeExpense(id)),
   };
 };
 

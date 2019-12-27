@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 //redux
 import * as budgetActions from '../redux/budgetForm/budgetActions';
-import budgetSelectors from '../redux/budgetForm/budgetSelectors';
+import rootSelectors from '../redux/rootSelectors';
 
 //components
 import Form from './shared/Form';
@@ -53,13 +53,13 @@ class BudgetForm extends Component {
 
 const mapStateToProps = state => {
   return {
-    budget: budgetSelectors.getBudget(state),
+    budget: rootSelectors.getBudget(state),
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSave: budget => dispatch(budgetActions.save(budget)),
+    onSave: budget => dispatch(budgetActions.saveBudget(budget)),
   };
 };
 

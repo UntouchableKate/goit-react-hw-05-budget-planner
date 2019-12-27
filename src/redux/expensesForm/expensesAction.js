@@ -1,7 +1,7 @@
 import shortid from 'shortid';
 import * as types from './expensesTypes';
 
-export const add = (name, amount) => {
+export const addExpense = (name, amount) => {
   return {
     type: types.ADD_BUDGET,
     payload: {
@@ -14,7 +14,7 @@ export const add = (name, amount) => {
   };
 };
 
-export const remove = id => {
+export const removeExpense = id => {
   return {
     type: types.REMOVE_BUDGET,
     payload: {

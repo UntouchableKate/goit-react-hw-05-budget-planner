@@ -1,6 +1,6 @@
 import * as budgetTypes from './budgetTypes';
 
-export const save = budget => {
+export const saveBudget = budget => {
   return {
     type: budgetTypes.SAVE_BUDGET,
     payload: {

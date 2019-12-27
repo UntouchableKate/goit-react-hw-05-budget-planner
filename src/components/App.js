@@ -1,11 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
-
-//selectors
-import budgetSelectors from '../redux/budgetForm/budgetSelectors';
-import expensesSelectors from '../redux/expensesForm/expensesSelectors';
-import rootSelectors from '../redux/rootSelectors';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 //components
 import BudgetForm from './BudgetForm';
@@ -25,24 +21,16 @@ const Container = styled.div`
   margin-right: auto;
 `;
 
-const App = ({ budget, expenses, totalExpenses, balance }) => {
+const App = () => {
   return (
     <Container>
       <BudgetForm />
-      <Values budget={budget} expenses={totalExpenses} balance={balance} />
+      <Values />
       <ExpenseForm />
-      {expenses.length > 0 && <ExpensesTable />}
+      <ExpensesTable />
+      <ToastContainer />
     </Container>
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    budget: rootSelectors.getBudget(state),
-    expenses: rootSelectors.getExpenses(state),
-    totalExpenses: rootSelectors.calculateTotalExpenses(state),
-    balance: rootSelectors.calculateBalance(state),
-  };
-};
-
-export default connect(mapStateToProps)(App);
+export default App;
